@@ -7,27 +7,24 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = 'white';
 ctx.lineWidth = 3;
 
-currentPath = null;
+currentPath = [];
 paths = [];
 
 onmousedown = function(e) {
-    if (currentPath === null) {
-        currentPath = [];
-    }
     currentPath.push({
         x: e.clientX - canvas.offsetLeft,
         y: e.clientY - canvas.offsetTop
     });
     if (currentPath.length === 2) {
         paths.push(currentPath);
-        currentPath = null;
+        currentPath = [];
     }
 }
 
 function drawPath(path) {
     ctx.beginPath();
     for (point of path) {
-        ctx.moveTo(point);
+        ctx.moveTo(point.x, point.y);
     }
     ctx.closePath();
     ctx.fill();
