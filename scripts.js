@@ -1,3 +1,5 @@
+const POINT_RADIUS = 3;
+
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
 
@@ -32,6 +34,11 @@ function drawPath(path) {
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
+        for (point of path) {
+            ctx.moveTo(point.x, point.y);
+            ctx.arc(point.x, point.y, POINT_RADIUS, 0, 2*Math.PI);
+        }
+        ctx.stroke();
     }
 }
 function draw() {
