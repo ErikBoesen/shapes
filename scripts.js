@@ -22,26 +22,21 @@ onmousedown = function(e) {
     }
 }
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+function color() {
+    let color = '#';
+    for (let i = 0; i < 6; i++) color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+    return color;
 }
-
 
 function drawPath(path) {
     if (path.length > 0) {
-        ctx.fillStyle = getRandomColor();
+        ctx.fillStyle = color();
         ctx.beginPath();
         ctx.moveTo(path[0].x, path[0].y);
         for (point of path) {
             ctx.lineTo(point.x, point.y);
         }
         ctx.closePath();
-        ctx.stroke();
         ctx.fill();
         for (point of path) {
             ctx.moveTo(point.x, point.y);
