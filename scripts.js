@@ -10,6 +10,19 @@ ctx.lineWidth = 3;
 currentPath = null;
 paths = [];
 
+onmousedown = function(e) {
+    if (currentPath === null) {
+        currentPath = [];
+    }
+    currentPath.push({
+        x: e.clientX - canvas.offsetLeft,
+        y: e.clientY - canvas.offsetTop
+    });
+    if (currentPath.length === 2) {
+        paths.push(currentPath);
+        currentPath = null;
+    }
+}
 
 function draw() {
 }
