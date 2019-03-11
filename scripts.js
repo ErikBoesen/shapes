@@ -1,13 +1,11 @@
-const POINT_RADIUS = 3;
-
 const canvas = document.getElementsByTagName('canvas')[0];
-const ctx = canvas.getContext('2d');
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+const ctx = canvas.getContext('2d');
 
+const POINT_RADIUS = 3;
 ctx.strokeStyle = 'white';
-ctx.lineWidth = 3;
+ctx.lineWidth = 1;
 ctx.fillStyle = 'white';
 
 currentPath = [];
@@ -24,8 +22,19 @@ onmousedown = function(e) {
     }
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+
 function drawPath(path) {
     if (path.length > 0) {
+        ctx.fillStyle = getRandomColor();
         ctx.beginPath();
         ctx.moveTo(path[0].x, path[0].y);
         for (point of path) {
@@ -45,6 +54,4 @@ function draw() {
     for (path of paths) drawPath(path);
     drawPath(currentPath);
 }
-setInterval(function() {
-    draw();
-}, 10);
+setInterval(draw, 10);
