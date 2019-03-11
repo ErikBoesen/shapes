@@ -5,7 +5,6 @@ const ctx = canvas.getContext('2d');
 
 const POINT_RADIUS = 3;
 ctx.strokeStyle = 'white';
-ctx.lineWidth = 1;
 ctx.fillStyle = 'white';
 
 currentPath = [];
@@ -21,13 +20,11 @@ onmousedown = function(e) {
         currentPath = [];
     }
 }
-
 function color() {
     let color = '#';
     for (let i = 0; i < 6; i++) color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
     return color;
 }
-
 function drawPath(path) {
     if (path.length > 0) {
         ctx.fillStyle = color();
