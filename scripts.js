@@ -24,7 +24,17 @@ onmousedown = function(e) {
     }
 }
 
+function drawPath(path) {
+    ctx.beginPath();
+    for (point of path) {
+        ctx.moveTo(point);
+    }
+    ctx.closePath();
+    ctx.fill();
+}
 function draw() {
+    for (path of paths) drawPath(path);
+    drawPath(currentPath);
 }
 setInterval(function() {
     draw();
