@@ -6,6 +6,7 @@ canvas.height = window.innerHeight;
 
 ctx.strokeStyle = 'white';
 ctx.lineWidth = 3;
+ctx.fillStyle = 'white';
 
 currentPath = [];
 paths = [];
@@ -15,19 +16,23 @@ onmousedown = function(e) {
         x: e.clientX - canvas.offsetLeft,
         y: e.clientY - canvas.offsetTop
     });
-    if (currentPath.length === 2) {
+    if (currentPath.length === 3) {
         paths.push(currentPath);
         currentPath = [];
     }
 }
 
 function drawPath(path) {
-    ctx.beginPath();
-    for (point of path) {
-        ctx.moveTo(point.x, point.y);
+    if (path.length > 0) {
+        ctx.beginPath();
+        ctx.moveTo(path[0].x, path[0].y);
+        for (point of path) {
+            ctx.lineTo(point.x, point.y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
     }
-    ctx.closePath();
-    ctx.fill();
 }
 function draw() {
     for (path of paths) drawPath(path);
